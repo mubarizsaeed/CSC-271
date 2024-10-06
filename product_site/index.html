@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplify Grocery Shopping - Healthy Recipes and Simplified Groceries</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="Simplify Grocery Shopping Logo" width="200" height="100">
+        <h1>Simplify Grocery Shopping</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipes.html">Recipes</a></li>
+                <li><a href="mealplans.html">Meal Plans</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Simplify Your Healthy Eating Journey</h2>
+            <p>Welcome to Simplify Grocery Shopping, where we deliver healthy recipes and simplified groceries for people trying to get in shape.</p>
+            <img src="images/healthy.png" alt="A delicious and healthy meal" width="300" height="200">
+        </section>
+
+        <section>
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li><strong>Customized Meal Plans:</strong> dietary preferences and fitness goals.</li>
+                <li><strong>Convenient Grocery Delivery:</strong> Fresh ingredients</li>
+                <li><strong>Nutritionist-Approved Recipes:</strong> Delicious and healthy meals</li>
+                <li><strong>Time-Saving:</strong> Skip the meal planning </li>
+            </ul>
+            <img src="images/delivery.jpg" alt="Fresh groceries being delivered" width="300" height="200">
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <ol>
+                <li>Choose your meal plan</li>
+                <li>Select your favorite recipes</li>
+                <li>Receive your groceries and recipes</li>
+                <li>Cook and enjoy your healthy meals</li>
+            </ol>
+        </section>
+
+        <section>
+            <table class="meal-plans">
+                <tr>
+                    <th>Plan</th>
+                    <th>Meals per Week</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>Basic</td>
+                    <td>3</td>
+                    <td>$59.99</td>
+                </tr>
+                <tr>
+                    <td>Standard</td>
+                    <td>5</td>
+                    <td>$89.99</td>
+                </tr>
+                <tr>
+                    <td>Premium</td>
+                    <td>7</td>
+                    <td>$119.99</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Sign Up for a Meal Plan</h2>
+            <form action="#" method="post">
+                <div>
+                    <label for="full-name">Full Name:</label>
+                    <input type="text" id="full-name" name="full-name" required minlength="2" maxlength="100">
+                </div>
+
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div>
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Format: 123-456-7890">
+                </div>
+
+                <div>
+                    <p>Select your preferred meal plan:</p>
+                    <input type="radio" id="basic" name="meal-plan" value="basic" required>
+                    <label for="basic">Basic (3 meals/week)</label><br>
+                    <input type="radio" id="standard" name="meal-plan" value="standard">
+                    <label for="standard">Standard (5 meals/week)</label><br>
+                    <input type="radio" id="premium" name="meal-plan" value="premium">
+                    <label for="premium">Premium (7 meals/week)</label>
+                </div>
+
+                <div>
+                    <p>Dietary Preferences (optional):</p>
+                    <input type="checkbox" id="vegetarian" name="diet" value="vegetarian">
+                    <label for="vegetarian">Vegetarian</label><br>
+                    <input type="checkbox" id="gluten-free" name="diet" value="gluten-free">
+                    <label for="gluten-free">Gluten-Free</label><br>
+                    <input type="checkbox" id="dairy-free" name="diet" value="dairy-free">
+                    <label for="dairy-free">Dairy-Free</label>
+                </div>
+
+                <div>
+                    <label for="start-date">Preferred Start Date:</label>
+                    <input type="date" id="start-date" name="start-date" required min="2023-05-01">
+                </div>
+
+                <div>
+                    <input type="submit" value="Sign Up">
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h2>How Our Service Works</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/oKPTeVGR-eA" allowfullscreen></iframe>
+        </section>
+
+        <section>
+            <h2>Get Started Today</h2>
+            <p><em>Join thousands of satisfied customers who have simplified their approach to healthy eating.</em></p>
+            <a href="#" style="font-weight: bold;">Sign Up Now</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Simplify Grocery Shopping. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:info@simplifygroceryshopping.com">info@simplifygroceryshopping.com</a></p>
+    </footer>
+</body>
+</html>

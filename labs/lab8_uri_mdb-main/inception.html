@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inception - URI-MDB</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .movie-image {
+            max-width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="logo">
+            <a href="index.html"><img src="img/logo.png" alt="URI-MDB Logo"></a>
+        </div>
+        <h1>Inception</h1>
+    </div>
+
+    <main>
+        <div class="movie-info">
+            <img src="img/inception.jpg" alt="Movie Thumbnail" class="movie-image">
+            <h2 id="movie-name" class="movie-name">Movie Name</h2>
+            <div class="rating" rating="0"></div>
+            <p>Movie description...</p>
+        </div>
+
+        <hr>
+
+        <div class="section reviews">
+            <div class="reviews-header">
+                <h3>User Reviews</h3>
+                <div class="filter">
+                    <select>
+                        <option value="All">All</option>
+                        <option value="5">5 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="2">2 Stars</option>
+                        <option value="1">1 Star</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-rating" rating="0"></div>
+                <p>Username <span class="review-date">Date</span></p>
+                <p>Review...</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-rating" rating="0"></div>
+                <p>Username <span class="review-date">Date</span></p>
+                <p>Review...</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-rating" rating="0"></div>
+                <p>Username <span class="review-date">Date</span></p>
+                <p>Review...</p>
+            </div>
+        </div>
+    </main>
+    <script src="js/movie-info.js"></script>
+    <script src="js/reviews.js"></script>
+</body>
+</html>

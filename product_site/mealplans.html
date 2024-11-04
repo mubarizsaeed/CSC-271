@@ -6,6 +6,7 @@
     <title>Customized Meal Planning & Meal Prep Delivery - Simplify Grocery Shopping</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/simple_script.js" defer></script>
+    <script src="js/mealplans.js" defer></script>
 </head>
 <body>
     <header>
@@ -35,17 +36,33 @@
 
         <section class="meal-plan-selection">
             <h2>Select Your Meal Plan</h2>
-            <div class="plan-selector">
-                <input type="radio" id="basic" name="meal-plan" value="basic" checked>
-                <label for="basic">Basic Plan</label>
+            
+            <div class="plan-form">
+                <div>
+                    <input type="checkbox" name="delivery" id="delivery">
+                    <label for="delivery">Want Delivery?</label>
+                </div>
 
-                <input type="radio" id="standard" name="meal-plan" value="standard">
-                <label for="standard">Standard Plan</label>
+                <div>
+                    <label for="mealCount">Number of Meals:</label>
+                    <select name="mealCount" id="mealCount">
+                        <option value="3">3 Meals</option>
+                        <option value="5">5 Meals</option>
+                        <option value="7">7 Meals</option>
+                    </select>
+                </div>
 
-                <input type="radio" id="premium" name="meal-plan" value="premium">
-                <label for="premium">Premium Plan</label>
+                <div>
+                    <input type="checkbox" name="dietary" id="dietary">
+                    <label for="dietary">Have Dietary Restrictions?</label>
+                </div>
+
+                <div id="result" class="result-display"></div>
+                <div id="price" class="price-display"></div>
+                <div id="mealList" class="meal-list"></div>
             </div>
 
+            
             <div class="plan-details">
                 <div id="selected-plan" class="plan-name"></div>
                 <div id="plan-price" class="price-display"></div>

@@ -1,95 +1,104 @@
-// Get all the elements we need
-const deliveryCheckbox = document.querySelector('#delivery');
-const mealSelect = document.querySelector('#mealCount');
-const dietaryCheckbox = document.querySelector('#dietary');
-const resultDiv = document.querySelector('#result');
-const priceDiv = document.querySelector('#price');
-const mealListDiv = document.querySelector('#mealList');
+function MealPlan(name, mealsPerWeek, price, features) {
+    this.name = name;
+    this.mealsPerWeek = mealsPerWeek;
+    this.basePrice = price;
+    this.features = features;
+    this.hasDelivery = false;
+    this.hasDietaryRestrictions = false;
 
-// Function to check if delivery is selected
-function checkDeliveryOption() {
-    if (!deliveryCheckbox.checked) {
-        return false;
-    }
-    return true;
-}
+    this.calculatePrice = function() {
+        let total = this.basePrice;
+        if (this.hasDietaryRestrictions) {
+            total += 5;
+        }
+        return total.toFixed(2);
+    };
 
-// Function to get plan price 
-function getPlanDetails(mealCount) {
-    let basePrice = 0;
-    let planName = "";
-    
-    if (mealCount === "3") {
-        basePrice = 59.99;
-        planName = "Basic Plan";
-    } else if (mealCount === "5") {
-        basePrice = 89.99;
-        planName = "Standard Plan";
-    } else if (mealCount === "7") {
-        basePrice = 119.99;
-        planName = "Premium Plan";
-    }
-
-    return {
-        price: basePrice,
-        name: planName
+    this.getDescription = function() {
+        return `${this.name} Plan includes ${this.mealsPerWeek} meals per week`;
     };
 }
 
-// Function to calculate final price 
-function calculateFinalPrice(basePrice, hasDietary) {
-    let finalPrice = basePrice;
-    if (hasDietary) {
-        finalPrice += 5;
+const basicPlan = new MealPlan(
+    "Basic", 
+    3, 
+    59.99,
+    ["3 chef-curated recipes", "Basic nutritional guidance"]
+);
+
+const premiumPlan = new MealPlan(
+    "Premium", 
+    7, 
+    119.99,
+    ["7 chef-curated recipes", "Weekly nutritionist consultation", "Premium support"]
+);
+
+const deliveryCheckbox = document.getElementById('delivery');
+const mealSelect = document.getElementById('mealCount');
+const dietaryCheckbox = document.getElementById('dietary');
+const resultDiv = document.getElementById('result');
+const priceDiv = document.getElementById('price');
+const selectedPlanDiv = document.getElementById('selected-plan');
+const planPriceDiv = document.getElementById('plan-price');
+const planFeaturesDiv = document.querySelector('.plan-features');
+
+function displayPlanInfo(planId, plan) {
+    const planElement = document.getElementById(planId);
+    if (planElement) {
+        planElement.innerHTML = `
+            <div class="plan-card">
+                <h3>${plan.getDescription()}</h3>
+                <p class="price">$${plan.calculatePrice()}</p>
+                <p class="delivery-status">${plan.hasDelivery ? "Delivery included" : "Pick-up only"}</p>
+                <h4>Features:</h4>
+                <ul class="features-list">
+                    ${plan.features.map(feature => `<li>${feature}</li>`).join('')}
+                </ul>
+                <div class="dietary-options">
+                    <label>
+                        <input type="checkbox" 
+                            ${plan.hasDietaryRestrictions ? 'checked' : ''} 
+                            onchange="updateDietary('${planId}', this.checked)">
+                        Add Dietary Restrictions (+$5)
+                    </label>
+                </div>
+            </div>
+        `;
     }
-    return finalPrice;
 }
 
-// Main function to calculate plan
-function calculatePlan() {
-    // First check delivery
-    if (!checkDeliveryOption()) {
+function updateDietary(planId, hasRestrictions) {
+    if (planId === 'basicPlanInfo') basicPlan.hasDietaryRestrictions = hasRestrictions;
+    if (planId === 'premiumPlanInfo') premiumPlan.hasDietaryRestrictions = hasRestrictions;
+    updateDisplay();
+}
+
+function updateDisplay() {
+    let currentPlan = mealSelect.value === "3" ? basicPlan : premiumPlan;
+    basicPlan.hasDelivery = deliveryCheckbox.checked;
+    premiumPlan.hasDelivery = deliveryCheckbox.checked;
+
+    if (!deliveryCheckbox.checked) {
         resultDiv.textContent = "Store Pickup Only - Please select delivery to continue";
         priceDiv.textContent = "";
-        return;
+    } else {
+        resultDiv.textContent = `Selected Plan: ${currentPlan.name}`;
+        priceDiv.textContent = `Total Price: $${currentPlan.calculatePrice()}`;
     }
 
-    // Get plan details
-    const planDetails = getPlanDetails(mealSelect.value);
-    
-    // Calculate final price
-    const finalPrice = calculateFinalPrice(planDetails.price, dietaryCheckbox.checked);
+    selectedPlanDiv.textContent = `Selected Plan: ${currentPlan.name}`;
+    planPriceDiv.textContent = `Monthly Price: $${currentPlan.basePrice}`;
+    planFeaturesDiv.innerHTML = `
+        <p><em>${currentPlan.features.join(", ")}</em></p>
+        <p><strong>Cost per meal: $${(currentPlan.basePrice / (currentPlan.mealsPerWeek * 4)).toFixed(2)}</strong></p>
+    `;
 
-    // Display results
-    resultDiv.textContent = `Selected Plan: ${planDetails.name}`;
-    priceDiv.textContent = `Total Price: $${finalPrice.toFixed(2)}`;
+    displayPlanInfo('basicPlanInfo', basicPlan);
+    displayPlanInfo('premiumPlanInfo', premiumPlan);
 }
 
-// Function to display sample 
-function displaySampleMeals() {
-    const sampleMeals = [
-        "Grilled Chicken Salad",
-        "Vegetable Stir Fry",
-        "Quinoa Bowl"
-    ];
+deliveryCheckbox.addEventListener('change', updateDisplay);
+mealSelect.addEventListener('change', updateDisplay);
+dietaryCheckbox.addEventListener('change', updateDisplay);
 
-    mealListDiv.innerHTML = ""; 
-    
-    let i = 0;
-    while (i < sampleMeals.length) {
-        const mealItem = document.createElement('p');
-        mealItem.textContent = `• ${sampleMeals[i]}`;
-        mealListDiv.appendChild(mealItem);
-        i++;
-    }
-}
-
-// Add event listeners
-const inputs = document.querySelectorAll('input, select');
-inputs.forEach(function(input) {
-    input.addEventListener('change', calculatePlan);
-});
-
-// Initialize the page
-displaySampleMeals();
-calculatePlan();
+updateDisplay();

@@ -21,7 +21,7 @@ const movieInfo = [
     if(i < movieInfo[2]) {
         stars += '★';
     } else {
-        stars += '☆';
+            stars += '☆';
     }
  }
  rating.textContent = stars;

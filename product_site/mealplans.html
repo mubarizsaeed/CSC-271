@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customized Meal Planning & Meal Prep Delivery - Simplify Grocery Shopping</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Changed the script order and added meal-plan.js -->
+    <script src="js/form-validation.js" defer></script>
     <script src="js/simple_script.js" defer></script>
     <script src="js/mealplans.js" defer></script>
 </head>
@@ -31,6 +33,12 @@
             <div class="intro-section">
                 <h2>Choose Your Perfect Customized Meal Plan</h2>
                 <p>Our customized meal planning options are designed to fit your lifestyle and health goals. Each meal prep delivery plan includes a variety of nutritionist-approved recipes and convenient grocery delivery to make healthy eating easy.</p>
+            </div>
+            <!-- Added new section for object-based plan display -->
+            <div class="selected-plans">
+                <h2>Current Available Plans</h2>
+                <div id="basicPlanInfo" class="plan-display"></div>
+                <div id="premiumPlanInfo" class="plan-display"></div>
             </div>
         </section>
 
@@ -62,7 +70,6 @@
                 <div id="mealList" class="meal-list"></div>
             </div>
 
-            
             <div class="plan-details">
                 <div id="selected-plan" class="plan-name"></div>
                 <div id="plan-price" class="price-display"></div>
